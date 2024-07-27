@@ -1,10 +1,14 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'main.dart';
 import 'profile_screen.dart';
+import 'signinwidgets.dart';
+import 'firebase_options.dart';
 
 class SignInLoad extends StatefulWidget {
   const SignInLoad({super.key});
@@ -31,7 +35,7 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
 
-  /*static Future<void> signInUsingEmailPassword({required String email, required String password, required BuildContext context}) async {
+  static Future<void> signInUsingEmailPassword({required String email, required String password, required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     try {
       auth.createUserWithEmailAndPassword(email: email, password: password);
@@ -44,7 +48,7 @@ class _SignInState extends State<SignIn> {
     } catch (e) {
       print(e);
     }
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +166,7 @@ class _SignInState extends State<SignIn> {
                     _submit();
                     if (_formKey.currentState!.validate() == true) {
 
-                      //signInUsingEmailPassword(email: _emailController.text, password: _passwordController.text, context: context);
+                      signInUsingEmailPassword(email: _emailController.text, password: _passwordController.text, context: context);
 
                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> HomePage()));
                     }
