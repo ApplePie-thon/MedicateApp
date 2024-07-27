@@ -7,14 +7,19 @@ import 'event_editing_page.dart';
 import 'event.dart';
 import 'event_data_source.dart';
 import 'tasks_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'profile_screen.dart';
 import 'signinwidgets.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -126,7 +131,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  /*//Login Function
+  //Login Function
   static Future<User?> loginUsingEmailPassword({required String email, required String password, required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
@@ -140,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     return user;
-  }*/
+  }
 
 
   @override
@@ -210,7 +215,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(12.0)
               ),
               onPressed: () async {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MyHomePage()));
+                User? user = await loginUsingEmailPassword(email: _emailController.text, password: _passwordController.text, context: context);
+                print(user);
+                if (user != null) {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MyHomePage()));
+                }
               },
               child: const Text("Login",
                 style: TextStyle (
