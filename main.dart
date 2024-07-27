@@ -7,6 +7,11 @@ import 'event_editing_page.dart';
 import 'event.dart';
 import 'event_data_source.dart';
 import 'tasks_widget.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'profile_screen.dart';
+import 'signinwidgets.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +30,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 34, 211, 255)),
         ),
-        home: MyHomePage(),
+        home: HomePage(),
         debugShowCheckedModeBanner: false,
       ),
     );
@@ -91,6 +96,134 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
   
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: LoginScreen(),
+    );
+  }
+}
+
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+
+  /*//Login Function
+  static Future<User?> loginUsingEmailPassword({required String email, required String password, required BuildContext context}) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+      user = userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "user-not-found") {
+        print("No User was found for that email");
+      }
+    }
+
+    return user;
+  }*/
+
+
+  @override
+  Widget build(BuildContext context) {
+    //create the textfilled controller
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
+
+
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Medicate", style: TextStyle(color: Colors.black, fontSize: 28.0, fontWeight: FontWeight.bold)),
+          const Text("Login to Your App", style: TextStyle(color: Colors.black, fontSize: 44.0, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 44.0),
+          TextField(
+            controller: _emailController,
+            keyboardType: TextInputType.emailAddress,
+            decoration: const InputDecoration(
+              hintText: "User Email",
+              prefixIcon: Icon(Icons.mail, color: Colors.black),
+            ),
+          ),
+          const SizedBox(
+            height: 26.0,
+          ),
+          TextField(
+            controller: _passwordController,
+            obscureText: true,
+            decoration: const InputDecoration(
+              hintText: "User Password",
+              prefixIcon: Icon(Icons.lock, color: Colors.black),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          const Text(
+              "Don't Remember your Password?",
+              style: TextStyle(color: Colors.blue)
+          ),
+          const SizedBox(
+            height: 5.0,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SignIn()));
+            },
+            child: const Text(
+                "Don't have an Account? Sign In",
+              style: TextStyle(color: Colors.blue),
+            ),
+          ),
+          const SizedBox(
+            height: 58.0,
+          ),
+          Container(
+            width: 400,
+            child: RawMaterialButton(
+              fillColor: const Color(0xFF0069FE),
+              elevation: 0.0,
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0)
+              ),
+              onPressed: () async {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MyHomePage()));
+              },
+              child: const Text("Login",
+                style: TextStyle (
+                  color: Colors.white,
+                  fontSize: 18.0,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class MyHomePage extends StatefulWidget {
