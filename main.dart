@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         title: 'Medicate App',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 34, 211, 255)),
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 125, 78, 253)),
         ),
         home: HomePage(),
         debugShowCheckedModeBanner: false,
@@ -162,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text("Medicate", style: TextStyle(color: Colors.black, fontSize: 28.0, fontWeight: FontWeight.bold)),
-          const Text("Login to Your App", style: TextStyle(color: Colors.black, fontSize: 44.0, fontWeight: FontWeight.bold)),
+          const Text("Log in", style: TextStyle(color: Colors.black, fontSize: 44.0, fontWeight: FontWeight.bold)),
           const SizedBox(height: 44.0),
           TextField(
             controller: _emailController,
@@ -187,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
             height: 12.0,
           ),
           const Text(
-              "Don't Remember your Password?",
+              "Forgot your Password?",
               style: TextStyle(color: Colors.blue)
           ),
           const SizedBox(
@@ -198,7 +198,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SignIn()));
             },
             child: const Text(
-                "Don't have an Account? Sign In",
+                "Don't have an account? Sign up",
               style: TextStyle(color: Colors.blue),
             ),
           ),
@@ -221,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MyHomePage()));
                 }
               },
-              child: const Text("Login",
+              child: const Text("Log In",
                 style: TextStyle (
                   color: Colors.white,
                   fontSize: 18.0,
@@ -432,7 +432,6 @@ class _CalendarPageState extends State<CalendarPage> {
           view: CalendarView.schedule,
           allowedViews: [
             CalendarView.schedule,
-            CalendarView.day,
             CalendarView.week,
             CalendarView.month,
           ],
