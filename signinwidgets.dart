@@ -78,7 +78,7 @@ class _SignInState extends State<SignIn> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const Text("Medicate", style: TextStyle(color: Colors.black, fontSize: 28.0, fontWeight: FontWeight.bold)),
-              const Text("Sign In To Your App", style: TextStyle(color: Colors.black, fontSize: 40.0, fontWeight: FontWeight.bold)),
+              const Text("Sign up", style: TextStyle(color: Colors.black, fontSize: 40.0, fontWeight: FontWeight.bold)),
               const SizedBox(height: 25.0),
               TextField(
                 controller: _emailController,
@@ -134,19 +134,12 @@ class _SignInState extends State<SignIn> {
               const SizedBox(
                 height: 12.0,
               ),
-              const Text(
-                  "Don't Remember your Password?",
-                  style: TextStyle(color: Colors.blue)
-              ),
-              const SizedBox(
-                height: 5.0,
-              ),
               InkWell(
                 onTap: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> HomePage()));
                 },
                 child: const Text(
-                  "Have an Account? Log In",
+                  "Have an account? Log in",
                   style: TextStyle(color: Colors.blue),
                 ),
               ),
@@ -172,7 +165,7 @@ class _SignInState extends State<SignIn> {
                     }
 
                   },
-                  child: const Text("Sign In",
+                  child: const Text("Sign Up",
                     style: TextStyle (
                       color: Colors.white,
                       fontSize: 18.0,
